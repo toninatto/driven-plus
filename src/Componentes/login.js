@@ -1,14 +1,16 @@
 import Logo from "../Recursos/Img/logo_driven.png";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import UserContext from "../Context/UserContext";
 
 export default function Login () {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const {setToken} = useContext(UserContext);
 
     function logar () {
     
@@ -22,13 +24,13 @@ export default function Login () {
             "https://mock-api.driven.com.br/api/v4/driven-plus/auth/login",
             body);
             
-        promise.then(res => {   
+            promise.then(res => {   
             console.log(res.data);
-            {res.data.membership ? navigate("/home") : navigate("/subscriptions")}
-            
+            setToken(res.data.token);
+            {res.data.membership ? navigate("/home") : navigate("/subscriptions")}            
         })
         
-        promise.catch(alert("Algo deu errado. Tente novamente ou faça o seu cadastro."))
+        promise.catch((err) => {alert("Algo deu errado. Tente novamente ou faça o seu cadastro.")})
         }
 
     return (

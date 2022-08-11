@@ -1,7 +1,8 @@
-import {useState} from "react";
+import { useState} from "react";
 import styled from "styled-components";
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+
 
 export default function SignUp () {
 
@@ -10,6 +11,7 @@ export default function SignUp () {
     const [cpf, setCpf] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    
 
     function criarConta () {
 
@@ -24,9 +26,9 @@ export default function SignUp () {
              "https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up",
              body);
         
-         promise.then(navigate("/"))
+         promise.then((res) => {navigate("/")})
 
-         promise.catch(alert("Falha no cadastro. Tente novamente."))
+         promise.catch((err) => {alert("Falha no cadastro. Tente novamente.")})
 
     }
     
