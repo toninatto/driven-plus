@@ -37,8 +37,8 @@ export default function Login () {
         
         <Container>
         <img src={Logo} alt="Driven+"/>                
-        <input type="text" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)}/>
-        <input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input type="text" placeholder="E-mail" value={email} required onChange={(e) => setEmail(e.target.value)}/>
+        <input type="password" placeholder="Senha" value={password} required onChange={(e) => setPassword(e.target.value)} />
         <div className="button" onClick={logar}><span> ENTRAR </span></div>
         <Link to="/sign-Up"><p>Não possuí uma conta? Cadastre-se</p></Link>  
         </Container>

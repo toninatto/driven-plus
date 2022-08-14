@@ -35,10 +35,10 @@ export default function SignUp () {
 
     return (
         <Container>
-        <input type="text" placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)}/>
-        <input type="text" placeholder="CPF" value={cpf} onChange={(e) => setCpf(e.target.value)}/>
-        <input type="text" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)}/>        
+        <input type="text" placeholder="Nome" value={name} required onChange={(e) => setName(e.target.value)}/>
+        <input type="text" placeholder="CPF" value={cpf} required onChange={(e) => setCpf(e.target.value)}/>
+        <input type="text" placeholder="E-mail" value={email} required onChange={(e) => setEmail(e.target.value)} />
+        <input type="password" placeholder="Senha" value={password} required onChange={(e) => setPassword(e.target.value)}/>        
         <div className="button" onClick={criarConta}><span> CADASTRAR </span></div>
         <Link to={"/"}><p>Já possui uma conta? Entre</p></Link>
         </Container>
