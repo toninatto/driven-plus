@@ -8,7 +8,7 @@ import Fechar from "../Recursos/Img/fechar.png";
 
 export default function Confirm ({plano, price, setVisible, body}) {
 
-    const {token, setMembership} = useContext(UserContext);
+    const {token, setAndPersistMembership} = useContext(UserContext);
     const navigate = useNavigate();
 
     function toggleVisible () {
@@ -31,7 +31,7 @@ export default function Confirm ({plano, price, setVisible, body}) {
     
         promise.then((res) => {
             console.log(res.data.membership);
-            setMembership(res.data.membership);
+            setAndPersistMembership(res.data.membership);
             navigate("/home")});
     
         promise.catch((err) => { console.log(err)});    

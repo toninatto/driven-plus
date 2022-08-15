@@ -18,15 +18,37 @@ export default function App () {
 		localStorage.setItem("token", token);
 	}
 
-    const [usuario, setUsuario] = useState([]);
-    const [membership, setMembership]    = useState([]);   
+    const userOnLocalStorage = localStorage.getItem("user");
+    const [usuario, setUsuario] = useState(userOnLocalStorage);
+
+    function setAndPersistUser(user) {
+        const userSerializado = JSON.stringify(user);
+        setUsuario(userSerializado);
+        localStorage.setItem("user", userSerializado)
+    }
+
+    const membershipOnLocalStorage = localStorage.getItem("mship");
+    const [membership, setMembership] = useState(membershipOnLocalStorage);
     
+    function setAndPersistMembership (mship) {
+        const mshipSerializado = JSON.stringify(mship);
+        setMembership(mshipSerializado);
+        localStorage.setItem("mship", mshipSerializado);
+    }
+    
+    //const usuarioSerializado = JSON.stringify(usuario);
+    //localStorage.setItem("user", usuarioSerializado);
+
+    //const membershipSerializado = JSON.stringify(membership);
+    //localStorage.setItem("mship", membershipSerializado);    
     
     const contextValue = {
          token, setToken,
          usuario, setUsuario,
          membership, setMembership,
-         setAndPersistToken        
+         setAndPersistToken,
+         setAndPersistUser,
+         setAndPersistMembership        
         }
 
     return (

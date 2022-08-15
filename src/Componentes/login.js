@@ -10,24 +10,22 @@ export default function Login () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const {setAndPersistToken, setUsuario, setMembership} = useContext(UserContext);
+    const {setAndPersistToken, setAndPersistUser, setAndPersistMembership} = useContext(UserContext);
 
     function logar () {
     
         const body = {
             email: email,
             password: password
-        }
-        
+        }        
     
         const promise = axios.post(
             "https://mock-api.driven.com.br/api/v4/driven-plus/auth/login",
             body);
             
-            promise.then(res => {   
-            console.log(res.data);
-            setUsuario(res.data);
-            setMembership(res.data.membership);
+        promise.then(res => {            
+            setAndPersistUser(res.data);
+            setAndPersistMembership(res.data.membership);
             setAndPersistToken(res.data.token);
             {res.data.membership ? navigate("/home") : navigate("/subscriptions")}            
         })

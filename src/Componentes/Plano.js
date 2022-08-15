@@ -39,9 +39,7 @@ export default function Plano () {
     const promise = axios.get(
         `https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships/${id}`, config);
 
-    promise.then((res) => {
-      console.log(res.data)
-      console.log(res.data.perks)
+    promise.then((res) => {      
       setPlano(res.data);
       setPerks(res.data.perks);
     })
@@ -59,9 +57,6 @@ export default function Plano () {
         e.preventDefault();
         setVisible(true);
     }
-
-    console.log(visible)
-
 
     return (
         <>
@@ -92,8 +87,7 @@ export default function Plano () {
         {visible ? <Confirm plano={plano.name} price={plano.price} setVisible={setVisible} body={body}/> 
         : <></>}
         </>
-    )
-}
+    )}
 
 const Logo = styled.div`
  h1 {

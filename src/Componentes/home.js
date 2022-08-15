@@ -8,12 +8,17 @@ import UserIcon from "../Recursos/Img/usuario.png";
 export default function Home () {
 
     const {token, usuario, membership} = useContext(UserContext);
-    const navigate = useNavigate();
+    const navigate = useNavigate();    
 
-    console.log(usuario);  
-    console.log(membership);
+    
+    const userList = JSON.parse(usuario);
+    console.log(userList);
 
-    const listaBeneficio = membership.perks.map((perk) => (
+    
+    const membershipList = JSON.parse(membership);
+    console.log(membershipList);
+
+    const listaBeneficio = membershipList.perks.map((perk) => (
                 <button><a href={perk.link}>{perk.title}</a></button>
     ));
 
@@ -36,9 +41,9 @@ export default function Home () {
 
     return(
         <Container>
-            <div className="img-plano"><img src={membership.image} alt={membership.name} /></div>
-            <div className="img-usuario"><img src={UserIcon} alt={usuario.name} /></div>
-        <h1>Olá, {usuario.name}</h1>
+            <div className="img-plano"><img src={membershipList.image} alt={membershipList.name} /></div>
+            <div className="img-usuario"><img src={UserIcon} alt={userList.name} /></div>
+        <h1>Olá, {userList.name}</h1>
         {listaBeneficio}
         <div className="botoes-final">
             <Link to={"/subscriptions"}><button><span>Mudar plano</span></button></Link>
