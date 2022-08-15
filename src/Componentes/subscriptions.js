@@ -6,10 +6,11 @@ import axios from "axios";
 
 export default function Subscriptions () {
 
-    const {token} = useContext(UserContext);
+    const {token, usuario} = useContext(UserContext);
     const [planos, setPlanos] = useState([]);
-
+    
     console.log(token);
+    console.log(usuario);
 
     const config = {
         headers: {
@@ -33,24 +34,23 @@ export default function Subscriptions () {
     
       }, [])
 
-    console.log(planos);
+    console.log(planos);   
 
-    const listaPlanos = planos.map((plano) => (
+        const listaPlanos = planos.map((plano) => (
                 <Link to={`/subscriptions/${plano.id}`}>
                 <div className="plano">
                     <img src={plano.image} alt="" />
                     <span>R$ {plano.price}</span>
                 </div>
-                </Link>))
+                </Link>));    
 
-
-    return(
-        <Container>
-        <h1>Escolha o seu Plano</h1>
-        {listaPlanos}
-        </Container>
-    )
-}
+        return(
+            <Container>
+            <h1>Escolha o seu Plano</h1>
+            {listaPlanos}
+            </Container>
+        )
+    } 
 
 const Container = styled.div`
  h1 {

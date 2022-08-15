@@ -10,7 +10,7 @@ export default function Login () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const {setToken} = useContext(UserContext);
+    const {setAndPersistToken, setUsuario, setMembership} = useContext(UserContext);
 
     function logar () {
     
@@ -26,7 +26,9 @@ export default function Login () {
             
             promise.then(res => {   
             console.log(res.data);
-            setToken(res.data.token);
+            setUsuario(res.data);
+            setMembership(res.data.membership);
+            setAndPersistToken(res.data.token);
             {res.data.membership ? navigate("/home") : navigate("/subscriptions")}            
         })
         

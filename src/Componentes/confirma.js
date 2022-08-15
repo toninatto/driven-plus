@@ -8,7 +8,7 @@ import Fechar from "../Recursos/Img/fechar.png";
 
 export default function Confirm ({plano, price, setVisible, body}) {
 
-    const {token} = useContext(UserContext);
+    const {token, setMembership} = useContext(UserContext);
     const navigate = useNavigate();
 
     function toggleVisible () {
@@ -29,11 +29,13 @@ export default function Confirm ({plano, price, setVisible, body}) {
             "https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions",
              body, config);
     
-        promise.then((res) => {navigate("/home")});
+        promise.then((res) => {
+            console.log(res.data.membership);
+            setMembership(res.data.membership);
+            navigate("/home")});
     
         promise.catch((err) => { console.log(err)});    
-      }
-    
+      }    
 
     return (
         <Container>
@@ -46,8 +48,7 @@ export default function Confirm ({plano, price, setVisible, body}) {
         </div>
         </div>            
         </Container>
-    )
-    }
+    )};
 
 const Container = styled.div`
 

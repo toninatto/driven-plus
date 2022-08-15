@@ -11,14 +11,15 @@ import Confirm from "./confirma";
 export default function Plano () {
 
     const {token} = useContext(UserContext);
-    const { id } = useParams();
-    const [plano, setPlano] = useState([]);
-    const [perks, setPerks] = useState([]);
+    const { id } = useParams();    
+    const [perks, setPerks] = useState([]);    
+    const [visible, setVisible] = useState(false);
+    const [plano, setPlano] = useState([]);    
     const [cardName, setCardName] = useState('');
     const [cardNumber, setCardNumber] = useState('');
     const [securityNumber, setSecurityNumber] = useState();
     const [expirationDate, setExpirationDate] = useState('');
-    const [visible, setVisible] = useState(false);
+
 
     const body = {
         membershipId: plano.id,

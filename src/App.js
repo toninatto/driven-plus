@@ -1,7 +1,6 @@
-
 import GlobalStyles from "./Recursos/GlobalStyles/globalStyles.js";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import {useState} from 'react';
+import { useState } from 'react';
 import UserContext from "./Context/UserContext.js";
 import Login from "./Componentes/login.js";
 import SignUp from "./Componentes/signUp.js";
@@ -11,10 +10,27 @@ import Plano from "./Componentes/Plano.js";
 
 export default function App () {
 
-    const [token, setToken] = useState('');
+    const tokenOnLocalStorage = localStorage.getItem("token");
+    const [token, setToken] = useState(tokenOnLocalStorage);
+
+    function setAndPersistToken(token) {
+		setToken(token);
+		localStorage.setItem("token", token);
+	}
+
+    const [usuario, setUsuario] = useState([]);
+    const [membership, setMembership]    = useState([]);   
+    
+    
+    const contextValue = {
+         token, setToken,
+         usuario, setUsuario,
+         membership, setMembership,
+         setAndPersistToken        
+        }
 
     return (
-        <UserContext.Provider value={{token, setToken}}>        
+        <UserContext.Provider value={contextValue}>        
         <GlobalStyles>
             <BrowserRouter>
                 <Routes>
