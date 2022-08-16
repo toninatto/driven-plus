@@ -8,15 +8,11 @@ import UserIcon from "../Recursos/Img/usuario.png";
 export default function Home () {
 
     const {token, usuario, membership} = useContext(UserContext);
-    const navigate = useNavigate();    
-
+    const navigate = useNavigate();
     
-    const userList = JSON.parse(usuario);
-    console.log(userList);
-
+    const userList = JSON.parse(usuario);    
     
-    const membershipList = JSON.parse(membership);
-    console.log(membershipList);
+    const membershipList = JSON.parse(membership);    
 
     const listaBeneficio = membershipList.perks.map((perk) => (
                 <button><a href={perk.link}>{perk.title}</a></button>
@@ -28,7 +24,7 @@ export default function Home () {
             headers: {
               Authorization: `Bearer ${token}`
             }
-        }
+        };
 
         const promise = axios.delete(
             "https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions", 
@@ -37,7 +33,7 @@ export default function Home () {
         promise.then((res) => {navigate("/subscriptions")});
     
         promise.catch((err) => { console.log(err)});
-    }
+    };
 
     return(
         <Container>
@@ -58,17 +54,18 @@ const Container = styled.div`
     position: fixed;
     top: 176px;
 
-
- h1 {
+    h1 {
         font-family: 'Roboto';
         font-weight: 700;
         font-size: 24px;
         color: #ffffff;
+        width: 130px;
+        text-align: center;
+        word-wrap: break-word;
         position: fixed;
         top: 95px;
         left: 130px;
     }
-
     .img-plano {        
         position: fixed;
         top: 32px;
@@ -107,9 +104,7 @@ const Container = styled.div`
         position: fixed;
         bottom: 12px;
     }
-
     .botoes-final button:nth-child(2) {
         background-color: #FF4747;
-    }
-    
+    }    
 `;

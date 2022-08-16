@@ -3,15 +3,13 @@ import styled from "styled-components";
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
-
 export default function SignUp () {
 
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [cpf, setCpf] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
-    
+    const navigate = useNavigate();    
 
     function criarConta () {
 
@@ -20,7 +18,7 @@ export default function SignUp () {
 	        name: name,
 	        cpf: cpf,
 	        password: password
-        }
+        };
         
          const promise = axios.post(
              "https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up",
@@ -29,9 +27,7 @@ export default function SignUp () {
          promise.then((res) => {navigate("/")})
 
          promise.catch((err) => {alert("Falha no cadastro. Tente novamente.")})
-
-    }
-    
+    };    
 
     return (
         <Container>
@@ -51,7 +47,6 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     
     input {
         height: 52px;
@@ -89,5 +84,4 @@ const Container = styled.div`
         font-size: 14px;
         color: #ffffff;
     }
-
 `;

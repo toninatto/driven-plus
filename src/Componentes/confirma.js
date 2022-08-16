@@ -5,7 +5,6 @@ import axios from "axios";
 import UserContext from "../Context/UserContext";
 import Fechar from "../Recursos/Img/fechar.png";
 
-
 export default function Confirm ({plano, price, setVisible, body}) {
 
     const {token, setAndPersistMembership} = useContext(UserContext);
@@ -13,9 +12,7 @@ export default function Confirm ({plano, price, setVisible, body}) {
 
     function toggleVisible () {
         setVisible(false);
-    }
-
-    console.log(body)
+    };    
 
     function registrar () {
 
@@ -23,18 +20,17 @@ export default function Confirm ({plano, price, setVisible, body}) {
             headers: {
               Authorization: `Bearer ${token}`
             }
-        }
+        };
 
         const promise = axios.post(
             "https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions",
              body, config);
     
-        promise.then((res) => {
-            console.log(res.data.membership);
+        promise.then((res) => {            
             setAndPersistMembership(res.data.membership);
             navigate("/home")});
     
-        promise.catch((err) => { console.log(err)});    
+        promise.catch((err) => { alert("Falha na finalização, tente novamente.")});    
       }    
 
     return (
@@ -118,5 +114,4 @@ const Container = styled.div`
         font-size: 14px;
         color: #ffffff;
     }
-
 `;

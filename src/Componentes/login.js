@@ -17,7 +17,7 @@ export default function Login () {
         const body = {
             email: email,
             password: password
-        }        
+        };       
     
         const promise = axios.post(
             "https://mock-api.driven.com.br/api/v4/driven-plus/auth/login",
@@ -31,10 +31,9 @@ export default function Login () {
         })
         
         promise.catch((err) => {alert("Algo deu errado. Tente novamente ou faça o seu cadastro.")})
-        }
+    };
 
-    return (
-        
+    return (        
         <Container>
         <img src={Logo} alt="Driven+"/>                
         <input type="text" placeholder="E-mail" value={email} required onChange={(e) => setEmail(e.target.value)}/>
@@ -91,5 +90,4 @@ const Container = styled.div`
         font-size: 14px;
         color: #ffffff;
     }
-
 `;

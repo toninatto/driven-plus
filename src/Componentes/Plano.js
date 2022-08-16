@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import UserContext from "../Context/UserContext";
-import Voltar from "../Recursos/Img/voltar.png";
-import Beneficios from "../Recursos/Img/itens.png";
-import Precinho from "../Recursos/Img/money.png";
 import Confirm from "./confirma";
+import LogoPlano from "./logoPlano";
+import InfoPlano from "./infoPlano";
 
 export default function Plano () {
 
@@ -33,7 +32,7 @@ export default function Plano () {
         headers: {
           Authorization: `Bearer ${token}`
         }
-    }
+    };
 
     useEffect(() => {
     const promise = axios.get(
@@ -49,30 +48,19 @@ export default function Plano () {
     })
     }, [])
 
-    const litaBeneficios = perks.map((perk, index) => (
+    const listaBeneficios = perks.map((perk, index) => (
                 <li>{index + 1}. {perk.title}</li>)
     );
 
     function confirmacao (e) {
         e.preventDefault();
         setVisible(true);
-    }
+    };
 
     return (
         <>
-        <Logo>
-            <Link to={"/subscriptions"}><div className="voltar"><img src={Voltar} alt="Voltar" /></div></Link>
-            <div className="plano">
-            <img src={plano.image} alt={plano.name} />
-            <h1>{plano.name}</h1>
-            </div>           
-        </Logo>
-        <Info>
-            <div className="info"><img src={Beneficios} alt="" /><span>Benefícios:</span></div>
-            <ol>{litaBeneficios}</ol>
-            <div className="info"><img src={Precinho} alt="" /><span>Preço:</span></div>
-            <ol><li>R$ {plano.price} cobrados mensalmente</li></ol>
-        </Info>
+        <LogoPlano image={plano.image} name={plano.name} />        
+        <InfoPlano listaBeneficios={listaBeneficios} price={plano.price}/>                
         <Form>
             <form onSubmit={confirmacao}>
             <input type="text" placeholder="Nome impresso no cartão" value={cardName} required onChange={(e) => setCardName(e.target.value)}/>
@@ -89,70 +77,12 @@ export default function Plano () {
         </>
     )}
 
-const Logo = styled.div`
- h1 {
-        font-family: 'Roboto';
-        font-size: 32px;
-        font-weight: 700;
-        color: #ffffff;
-        margin-bottom: 14px;
-    }
-
-    .voltar {
-        position: fixed;
-        top: 24px;
-        left: 22px;                    
-    }
-
-    .plano {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 22px;
-    }
-
-    .plano img {
-        margin-bottom: 14px;
-    }
-    `;
-
-const Info = styled.div`
-    width: 100%;
-    align-items: left;
-    margin-left: 40px;
-    padding-left: 40px;
-    margin-bottom: 22px;
-
-    span {
-        font-family: 'Roboto';
-        font-size: 16px;
-        color: #ffffff;
-    }
-    .info {
-        margin-bottom: 10px;
-    }
-    img {
-        margin-right: 5px;
-    }
-    li {
-        font-family: 'Roboto';
-        font-size: 14px;
-        color: #ffffff;
-    }
-    ol {
-        margin-bottom: 12px;
-    }
-`;
-
 const Form = styled.div`
        
-       form {
-        
+       form {        
         display: flex;
         flex-direction: column;
-        align-items: center;
-        
+        align-items: center;        
        }
 
     button {
@@ -163,8 +93,7 @@ const Form = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 4px;
-        
+        margin-top: 4px;        
     }
     input {
         height: 52px;

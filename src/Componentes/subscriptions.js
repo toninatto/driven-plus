@@ -7,34 +7,26 @@ import axios from "axios";
 export default function Subscriptions () {
 
     const {token, usuario} = useContext(UserContext);
-    const [planos, setPlanos] = useState([]);
-    
-    console.log(token);
-    console.log(usuario);
+    const [planos, setPlanos] = useState([]);  
 
     const config = {
         headers: {
           Authorization: `Bearer ${token}`
         }
-    }
+    };
 
     useEffect(() => {
-
         const promise = axios.get(
             "https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships", config);
     
-        promise.then((res) => {
-          console.log(res.data)
+        promise.then((res) => {          
           setPlanos(res.data)
         })
     
         promise.catch((err) => {
           console.log(err);
-        })
-    
-      }, [])
-
-    console.log(planos);   
+        })    
+      }, [])      
 
         const listaPlanos = planos.map((plano) => (
                 <Link to={`/subscriptions/${plano.id}`}>
@@ -60,7 +52,6 @@ const Container = styled.div`
         color: #ffffff;
         margin-bottom: 14px;
     }
-
     .plano {
         width: 290px;
         height: 180px;
@@ -73,17 +64,14 @@ const Container = styled.div`
         box-sizing: border-box;
         margin-top: 10px;
     }
-
     span {
         font-family: 'Roboto';
         font-size: 24px;
         font-weight: 700;
         color: #ffffff;
     }
-
     img {
         width: 139.38px;
         height: 95.13px;
     }
-
 `;

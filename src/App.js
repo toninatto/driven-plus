@@ -16,7 +16,7 @@ export default function App () {
     function setAndPersistToken(token) {
 		setToken(token);
 		localStorage.setItem("token", token);
-	}
+	};
 
     const userOnLocalStorage = localStorage.getItem("user");
     const [usuario, setUsuario] = useState(userOnLocalStorage);
@@ -25,7 +25,7 @@ export default function App () {
         const userSerializado = JSON.stringify(user);
         setUsuario(userSerializado);
         localStorage.setItem("user", userSerializado)
-    }
+    };
 
     const membershipOnLocalStorage = localStorage.getItem("mship");
     const [membership, setMembership] = useState(membershipOnLocalStorage);
@@ -34,13 +34,7 @@ export default function App () {
         const mshipSerializado = JSON.stringify(mship);
         setMembership(mshipSerializado);
         localStorage.setItem("mship", mshipSerializado);
-    }
-    
-    //const usuarioSerializado = JSON.stringify(usuario);
-    //localStorage.setItem("user", usuarioSerializado);
-
-    //const membershipSerializado = JSON.stringify(membership);
-    //localStorage.setItem("mship", membershipSerializado);    
+    };      
     
     const contextValue = {
          token, setToken,
@@ -49,7 +43,7 @@ export default function App () {
          setAndPersistToken,
          setAndPersistUser,
          setAndPersistMembership        
-        }
+        };
 
     return (
         <UserContext.Provider value={contextValue}>        
